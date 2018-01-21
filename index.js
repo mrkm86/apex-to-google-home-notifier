@@ -1,0 +1,42 @@
+//おまじない
+"use strict";
+
+//module.exports->ほかのモジュールから読み込み可能
+
+let oracle = require("./service/oracle");
+
+console.log("Application is running...");
+
+///Notification取得
+return oracle.get_notification().then(
+    (response) => {
+
+        //該当なし
+        if (response.length == 0) {
+
+            console.log("There is no notifications.");
+            console.log("Application is exit.");
+            return;
+
+        }
+        //該当あり
+        else {
+
+            console.log("----------------------------------------------------------------------");
+            console.log("Notification Got.");
+            console.log(response[0].t_guest_name);
+            console.log("----------------------------------------------------------------------");
+
+            return oracle.put_remove_notification().then(
+                (response) => {
+
+                    //成功
+                    console.log("Notification is removed.");
+                    console.log("Application is exit.");
+                }
+            );
+
+        }
+    }
+);
+
