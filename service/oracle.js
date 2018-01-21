@@ -6,8 +6,6 @@ Promise = require("bluebird");
 
 var APEX_URL = config["APEX_URL"];
 var ORACLE_WORKSPACE = config["ORACLE_WORKSPACE"];
-
-//const URL_BASE = "https://apex.oracle.com/pls/apex/" + process.env.ORACLE_WORKSPACE + "/kasidasi/" + process.env.ORACLE_ACCESS_TOKEN;
 var URL_BASE = APEX_URL + ORACLE_WORKSPACE + "/";
 console.log("----------------------------------------------------------------------");
 console.log("Connection is ..." + URL_BASE);

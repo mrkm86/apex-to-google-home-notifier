@@ -4,6 +4,7 @@
 //module.exports->ほかのモジュールから読み込み可能
 
 let oracle = require("./service/oracle");
+let googlehomenotifier = require("./service/google-home-notifier");
 
 console.log("Application is running...");
 
