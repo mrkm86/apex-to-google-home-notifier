@@ -28,6 +28,9 @@ return oracle.get_notification().then(
             console.log(response[0].t_guest_name);
             console.log("----------------------------------------------------------------------");
 
+            var strmessage = "ハーティスにお客様です。" + response[0].t_guest_name + "様がいらっしゃいました";
+            googlehomenotifier.NotifyGoogleHome(strmessage);
+
             return oracle.put_remove_notification().then(
                 (response) => {
 
