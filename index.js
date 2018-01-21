@@ -28,9 +28,12 @@ return oracle.get_notification().then(
             console.log(response[0].t_guest_name);
             console.log("----------------------------------------------------------------------");
 
+            //GOOGLE-HOMEに通知を送る
             var strmessage = "ハーティスにお客様です。" + response[0].t_guest_name + "様がいらっしゃいました";
+		    console.log(strmessage);
             googlehomenotifier.NotifyGoogleHome(strmessage);
 
+            //通知を送ったので、API経由で通知を削除する
             return oracle.put_remove_notification().then(
                 (response) => {
 
@@ -43,4 +46,3 @@ return oracle.get_notification().then(
         }
     }
 );
-
