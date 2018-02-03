@@ -29,7 +29,7 @@ return oracle.get_notification().then(
             console.log("----------------------------------------------------------------------");
 
             //GOOGLE-HOMEに通知を送る
-            var strmessage = "ハーティスにお客様です。" + response[0].t_guest_name + "様がいらっしゃいました";
+            var strmessage = response[0].t_guest_name;
 		    console.log(strmessage);
             googlehomenotifier.NotifyGoogleHome(strmessage);
 
