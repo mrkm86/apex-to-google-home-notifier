@@ -17,7 +17,8 @@ module.exports = class ServiceOracle {
 
     ///Notification取得
     static get_notification() {
-        let url = URL_BASE + "/receiption/api/GetGuestName";
+        let url = URL_BASE + "/google-home-notifier/api/GetGuestName";
+        //let url = URL_BASE + "/receiption/api/GetGuestName";
         let headers = {
             "Content-Type": "application/json"
         }
@@ -38,7 +39,7 @@ module.exports = class ServiceOracle {
 
     ///Notification除去
     static put_remove_notification() {
-        let url = URL_BASE + "/receiption/api/RemoveGuestName";
+        let url = URL_BASE + "/google-home-notifier/api/RemoveGuestName";
         return request.putAsync({
             url: url,
             json: true
