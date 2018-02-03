@@ -25,7 +25,7 @@ return oracle.get_notification().then(
 
             console.log("----------------------------------------------------------------------");
             console.log("Notification Got.");
-            console.log(response[0].t_guest_name);
+            console.log(response[0].t_message);
             console.log("----------------------------------------------------------------------");
 
             //GOOGLE-HOMEに通知を送る
