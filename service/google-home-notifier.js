@@ -15,7 +15,7 @@ console.log("-------------------------------------------------------------------
 
 //値を格納
 googlehome.device(GOOGLE_HOME_NOTIFIER_DEVICE_NAME, GOOGLE_HOME_NOTIFIER_LANGUAGE);
-googlehome.ip(GOOGLE_HOME_NOTIFIER_IPADDRESS);
+googlehome.ip(GOOGLE_HOME_NOTIFIER_IPADDRESS, GOOGLE_HOME_NOTIFIER_LANGUAGE);
 
 module.exports = class ServiceGoogleHomeNotification {
 
