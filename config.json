@@ -1,7 +1,0 @@
-{
-    "APEX_URL": "https://hsccloud-a522913.db.us2.oraclecloudapps.com/apex/",
-    "ORACLE_WORKSPACE": "hscdemo",
-    "GOOGLE_HOME_NOTIFIER_LANGUAGE": "ja",
-    "GOOGLE_HOME_NOTIFIER_DEVICE_NAME": "リビング",
-    "GOOGLE_HOME_NOTIFIER_IPADDRESS": "192.168.18.4"
-}
