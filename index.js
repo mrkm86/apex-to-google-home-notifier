@@ -34,7 +34,7 @@ return oracle.get_notification().then(
             googlehomenotifier.NotifyGoogleHome(strmessage);
 
             //通知を送ったので、API経由で通知を削除する
-            return oracle.put_remove_notification().then(
+            return oracle.delete_notification().then(
                 (response) => {
 
                     //成功

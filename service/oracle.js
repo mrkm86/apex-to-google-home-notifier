@@ -17,8 +17,7 @@ module.exports = class ServiceOracle {
 
     ///Notification取得
     static get_notification() {
-        let url = URL_BASE + "/google-home-notifier/api/GetGuestName";
-        //let url = URL_BASE + "/receiption/api/GetGuestName";
+        let url = URL_BASE + "/google-home-notifier/api/message";
         let headers = {
             "Content-Type": "application/json"
         }
@@ -31,22 +30,21 @@ module.exports = class ServiceOracle {
                 if (response.statusCode != 200) {
                     return Promise.reject(new Error("ServiceOracle.get_notification() failed."));
                 }
-                //console.log(response.body.items);
                 return response.body.items;
             }
         );
     }
 
     ///Notification除去
-    static put_remove_notification() {
-        let url = URL_BASE + "/google-home-notifier/api/RemoveGuestName";
-        return request.putAsync({
+    static delete_notification() {
+        let url = URL_BASE + "/google-home-notifier/api/message";
+        return request.deleteAsync({
             url: url,
             json: true
         }).then(
             (response) => {
                 if (response.statusCode != 200) {
-                    return Promise.reject(new Error("ServiceOracle.put_remove_notification() failed."));
+                    return Promise.reject(new Error("ServiceOracle.delete_notification() failed."));
                 }
                 return response;
             }
