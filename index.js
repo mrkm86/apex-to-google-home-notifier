@@ -12,7 +12,6 @@ console.log("Application is running...");
 return oracle.get_notification().then(
     (response) => {
         
-/*        
         //該当なし
         if (response.length == 0) {
 
@@ -31,8 +30,6 @@ return oracle.get_notification().then(
 
             //GOOGLE-HOMEに通知を送る
             var strmessage = response[0].t_message;
-*/
-            var strmessage = "いいね";
             console.log(strmessage);
             googlehomenotifier.NotifyGoogleHome(strmessage);
 
@@ -45,7 +42,6 @@ return oracle.get_notification().then(
                     console.log("Application is exit.");
                 }
             );
-
-        //}
+        }
     }
 );
