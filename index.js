@@ -26,15 +26,19 @@ return oracle.get_notification().then(
             console.log("----------------------------------------------------------------------");
             console.log("Notification Got.");
             console.log(response[0].t_message);
+            console.log(response[0].t_google_home_ip_address);
+            console.log(response[0].t_row_id);
             console.log("----------------------------------------------------------------------");
 
             //GOOGLE-HOMEに通知を送る
-            var strmessage = response[0].t_message;
-            console.log(strmessage);
-            googlehomenotifier.NotifyGoogleHome(strmessage);
+            var strMessage = response[0].t_message;
+            var strIPAddress = response[0].t_google_home_ip_address;
+            var strRowId = response[0].t_row_id;
+
+            googlehomenotifier.NotifyGoogleHome(strMessage, strIPAddress);
 
             //通知を送ったので、API経由で通知を削除する
-            return oracle.delete_notification().then(
+            return oracle.delete_notification(strRowId).then(
                 (response) => {
 
                     //成功

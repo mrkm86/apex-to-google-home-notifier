@@ -15,7 +15,7 @@ Promise.promisifyAll(request);
 
 module.exports = class ServiceOracle {
 
-    ///Notification取得
+    //Notification取得
     static get_notification() {
         let url = URL_BASE + "/google-home-notifier/api/message";
         let headers = {
@@ -35,9 +35,9 @@ module.exports = class ServiceOracle {
         );
     }
 
-    ///Notification除去
-    static delete_notification() {
-        let url = URL_BASE + "/google-home-notifier/api/message";
+    //Notification除去
+    static delete_notification(strRowId) {
+        let url = URL_BASE + `/google-home-notifier/api/message?ROWID=${strRowId}`;
         return request.deleteAsync({
             url: url,
             json: true
