@@ -35,9 +35,19 @@ return oracle.get_notification().then(
             var strIPAddress = response[0].t_google_home_ip_address;
             var strRowId = response[0].t_row_id;
 
-            googlehomenotifier.NotifyGoogleHome(strMessage, strIPAddress);
+            //for debug
+            strRowId = "AAAWixAAAAACALjAAA";
 
-            //通知を送ったので、API経由で通知を削除する
+/*
+            //notify GoogleHome
+            return googlehomenotifier.NotifyGoogleHome2(strMessage, strIPAddress)
+            .then((response) => {
+                    console.log(response);
+                }
+            );
+*/
+/*
+            //delete notification
             return oracle.delete_notification(strRowId).then(
                 (response) => {
 
@@ -46,6 +56,7 @@ return oracle.get_notification().then(
                     console.log("Application is exit.");
                 }
             );
+*/
         }
     }
 );
