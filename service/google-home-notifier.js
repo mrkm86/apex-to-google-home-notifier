@@ -20,27 +20,16 @@ googlehome.ip(GOOGLE_HOME_NOTIFIER_IPADDRESS, GOOGLE_HOME_NOTIFIER_LANGUAGE);
 module.exports = class ServiceGoogleHomeNotification {
 
     //通知をする
-    static async NotifyGoogleHome2(strMessage, strIPAddress) {
+    static async NotifyGoogleHome(strMessage, strIPAddress) {
 
         //IPアドレスを格納
         googlehome.ip(strIPAddress, GOOGLE_HOME_NOTIFIER_LANGUAGE);
-
-        //20181217 ANHLD EDIT START
-        // return new Promise(resolve => {
-
-        //     googlehome.notify(strMessage, function(notifyRes) {
-        //         console.log("==> NotifyGoogleHome2:" + notifyRes);
-        //         return resolve(notifyRes);
-        //     });
-
-        // });
 
         return new Promise((resolve, reject) => {
             try {
                 googlehome.notify(strMessage, function (notifyRes) {
 
                     try {
-                        console.log(notifyRes);
                         return resolve(notifyRes);
                         
                     } catch (error) {
@@ -54,22 +43,5 @@ module.exports = class ServiceGoogleHomeNotification {
             }
 
         });
-
-        //29171217 ANHLD EDIT END
-    }
-
-    //通知をする
-    static NotifyGoogleHome(strMessage, strIPAddress) {
-
-        //IPアドレスを格納
-        googlehome.ip(strIPAddress, GOOGLE_HOME_NOTIFIER_LANGUAGE);
-
-        try {
-            googlehome.notify(strMessage, function (notifyRes) {
-                console.log(notifyRes);
-            });
-        } catch (err) {
-            console.log(err);
-        }
     }
 }

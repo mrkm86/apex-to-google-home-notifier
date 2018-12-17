@@ -38,10 +38,9 @@ return oracle.get_notification().then(
             //for debug
             strRowId = "AAAWixAAAAACALjAAA";
 
-            return googlehomenotifier.NotifyGoogleHome2(strMessage, strIPAddress)
+            return googlehomenotifier.NotifyGoogleHome(strMessage, strIPAddress)
                 .then((response) => {
                     console.log(response);
-
                 }).then(() => {
                     oracle.delete_notification(strRowId).then(
                         (response) => {
