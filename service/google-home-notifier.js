@@ -1,7 +1,7 @@
 "use strict";
 
 var config = require('../config.json');
-var googlehome = require('../../google-home-notifier');
+var googlehome = require('../node_modules/google-home-notifier');
 
 var GOOGLE_HOME_NOTIFIER_LANGUAGE = config["GOOGLE_HOME_NOTIFIER_LANGUAGE"];
 var GOOGLE_HOME_NOTIFIER_DEVICE_NAME = config["GOOGLE_HOME_NOTIFIER_DEVICE_NAME"];
@@ -25,14 +25,37 @@ module.exports = class ServiceGoogleHomeNotification {
         //IPアドレスを格納
         googlehome.ip(strIPAddress, GOOGLE_HOME_NOTIFIER_LANGUAGE);
 
-        return new Promise(resolve => {
+        //20181217 ANHLD EDIT START
+        // return new Promise(resolve => {
 
-            googlehome.notify(strMessage, function(notifyRes) {
-                console.log(notifyRes　);
-                return resolve(notifyRes);
-            });
+        //     googlehome.notify(strMessage, function(notifyRes) {
+        //         console.log("==> NotifyGoogleHome2:" + notifyRes);
+        //         return resolve(notifyRes);
+        //     });
+
+        // });
+
+        return new Promise((resolve, reject) => {
+            try {
+                googlehome.notify(strMessage, function (notifyRes) {
+
+                    try {
+                        console.log(notifyRes);
+                        return resolve(notifyRes);
+                        
+                    } catch (error) {
+                        return reject(error);
+                    }
+
+                });
+
+            } catch (error) {
+                return reject(error);
+            }
 
         });
+
+        //29171217 ANHLD EDIT END
     }
 
     //通知をする
@@ -42,10 +65,10 @@ module.exports = class ServiceGoogleHomeNotification {
         googlehome.ip(strIPAddress, GOOGLE_HOME_NOTIFIER_LANGUAGE);
 
         try {
-            googlehome.notify(strMessage, function(notifyRes) {
+            googlehome.notify(strMessage, function (notifyRes) {
                 console.log(notifyRes);
             });
-        } catch(err) {
+        } catch (err) {
             console.log(err);
         }
     }

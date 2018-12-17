@@ -6,7 +6,7 @@ Promise = require("bluebird");
 
 var APEX_URL = config["APEX_URL"];
 var ORACLE_WORKSPACE = config["ORACLE_WORKSPACE"];
-var URL_BASE = APEX_URL + ORACLE_WORKSPACE + "/";
+var URL_BASE = APEX_URL + ORACLE_WORKSPACE ; //+ "/"; //20181217 ANHLD EDIT remove "/"
 console.log("----------------------------------------------------------------------");
 console.log("Connection is ..." + URL_BASE);
 console.log("----------------------------------------------------------------------");
@@ -18,6 +18,7 @@ module.exports = class ServiceOracle {
     //Notification取得
     static get_notification() {
         let url = URL_BASE + "/google-home-notifier/api/message";
+
         let headers = {
             "Content-Type": "application/json"
         }
@@ -38,6 +39,7 @@ module.exports = class ServiceOracle {
     //Notification除去
     static delete_notification(strRowId) {
         let url = URL_BASE + `/google-home-notifier/api/message?ROWID=${strRowId}`;
+
         return request.deleteAsync({
             url: url,
             json: true

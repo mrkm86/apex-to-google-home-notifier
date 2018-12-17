@@ -11,7 +11,7 @@ console.log("Application is running...");
 ///Notification取得
 return oracle.get_notification().then(
     (response) => {
-        
+
         //該当なし
         if (response.length == 0) {
 
@@ -38,25 +38,19 @@ return oracle.get_notification().then(
             //for debug
             strRowId = "AAAWixAAAAACALjAAA";
 
-/*
-            //notify GoogleHome
             return googlehomenotifier.NotifyGoogleHome2(strMessage, strIPAddress)
-            .then((response) => {
+                .then((response) => {
                     console.log(response);
-                }
-            );
-*/
-/*
-            //delete notification
-            return oracle.delete_notification(strRowId).then(
-                (response) => {
 
-                    //成功
-                    console.log("Notification is removed.");
-                    console.log("Application is exit.");
-                }
-            );
-*/
+                }).then(() => {
+                    oracle.delete_notification(strRowId).then(
+                        (response) => {
+                            //成功
+                            console.log("Notification is removed.");
+                            console.log("Application is exit.");
+                        }
+                    );
+                });
         }
     }
 );
