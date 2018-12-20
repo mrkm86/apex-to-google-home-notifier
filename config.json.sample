@@ -2,5 +2,5 @@
     "APEX_URL": "https://hoehoge/",
     "ORACLE_WORKSPACE": "hoge",
     "GOOGLE_HOME_NOTIFIER_LANGUAGE": "ja",
-    "GOOGLE_HOME_NOTIFIER_DEVICE_NAME": "リビング",
+    "GOOGLE_HOME_NOTIFIER_DEVICE_NAME": "リビング"
 }
