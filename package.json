@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.3",
+    "cron": "^1.6.0",
     "google-home-notifier": "^1.2.0",
     "google-tts-api": "0.0.4",
     "mdns": "^2.4.0",
@@ -18,6 +19,7 @@
     "rebuild": "^0.1.2",
     "request": "^2.88.0",
     "rm": "^0.1.8",
+    "shelljs": "^0.8.3",
     "tough-cookie": "^2.5.0"
   }
 }
