@@ -1,5 +1,7 @@
 
+
 git clone https://github.com/mrkm86/apex-to-google-home-notifier.git
+sudo apt-get install libavahi-compat-libdnssd-dev
 npm install
 mv config.json.sample config.json
 change the parameter at config.json
