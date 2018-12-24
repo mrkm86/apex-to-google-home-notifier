@@ -3,49 +3,70 @@
 let oracle = require("./service/oracle");
 let googlehomenotifier = require("./service/google-home-notifier");
 
-console.log("Application is running...");
+//20181224 ANHLD EDIT START
+const args = process.argv;
 
-//get notification(s)
-return oracle.get_notification().then(
-    (response) => {
+//Execute [--cron]
+if (args.slice(2).length > 0 && args.slice(2)[0] == '--cron') {
 
-        //該当なし
-        if (response.length == 0) {
+    const cron = require('cron');
+    const shell = require('shelljs');
 
-            console.log("There is no notifications.");
-            console.log("Application is exit.");
-            return;
-
+    var job = new cron.CronJob({
+        cronTime: '*/5 * * * * *', // 'second (optional) | minute | hour | day of month | month | day of week'
+        onTick: function () {
+            shell.exec("node index.js");
         }
-        //該当あり
-        else {
+    });
 
-            console.log("----------------------------------------------------------------------");
-            console.log(`${response.length} Notification(s) Got.`);
-            console.log("----------------------------------------------------------------------");
+    job.start();
+}
+else {
+    console.log("Application is running...");
 
-            response.forEach( function( value ) {
+    //get notification(s)
+    return oracle.get_notification().then(
+        (response) => {
 
-                //notify GoogleHome
-                var strMessage = value.t_message;
-                var strIPAddress = value.t_google_home_ip_address;
-                var strRowId = value.t_row_id;
+            //該当なし
+            if (response.length == 0) {
 
-                console.log(`Notification(${strRowId}) is started.`);
+                console.log("There is no notifications.");
+                console.log("Application is exit.");
+                return;
 
-                return googlehomenotifier.NotifyGoogleHome(strMessage, strIPAddress)
-                    .then((response) => {
-                        console.log(`Notification(${strRowId}) is notified.`);
-                    }).then(() => {
-                        oracle.delete_notification(strRowId).then(
-                            (response) => {
-                                console.log(`Notification(${strRowId}) is removed.`);
-                            }
-                        ).then((response) => {
-                            console.log(`Notification(${strRowId}) is completed.`);
+            }
+            //該当あり
+            else {
+
+                console.log("----------------------------------------------------------------------");
+                console.log(`${response.length} Notification(s) Got.`);
+                console.log("----------------------------------------------------------------------");
+
+                response.forEach(function (value) {
+
+                    //notify GoogleHome
+                    var strMessage = value.t_message;
+                    var strIPAddress = value.t_google_home_ip_address;
+                    var strRowId = value.t_row_id;
+
+                    console.log(`Notification(${strRowId}) is started.`);
+
+                    return googlehomenotifier.NotifyGoogleHome(strMessage, strIPAddress)
+                        .then((response) => {
+                            console.log(`Notification(${strRowId}) is notified.`);
+                        }).then(() => {
+                            oracle.delete_notification(strRowId).then(
+                                (response) => {
+                                    console.log(`Notification(${strRowId}) is removed.`);
+                                }
+                            ).then((response) => {
+                                console.log(`Notification(${strRowId}) is completed.`);
+                            });
                         });
-                    });
-            })
+                })
+            }
         }
-    }
-);
+    );
+}
+//20181224 ANHLD EDIT END
