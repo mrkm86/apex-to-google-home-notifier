@@ -3,7 +3,6 @@
 let oracle = require("./service/oracle");
 let googlehomenotifier = require("./service/google-home-notifier");
 
-//20181224 ANHLD EDIT START
 const args = process.argv;
 
 //Execute [--cron]
@@ -69,4 +68,3 @@ else {
         }
     );
 }
-//20181224 ANHLD EDIT END
