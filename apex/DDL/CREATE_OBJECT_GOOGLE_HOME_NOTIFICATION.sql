@@ -20,7 +20,7 @@ CREATE TABLE  "T_GOOGLE_HOME_MASTER"
 /
 CREATE OR REPLACE EDITIONABLE PACKAGE  "PKG_RECEIPT_NOTIFICATION_APP" as
     
-    --—ˆ‹q–¼‹L˜^
+    --æ¥å®¢åè¨˜éŒ²
     procedure fnc_RecordGuestReciption
     (
         strGuestName          IN VARCHAR2,
@@ -31,7 +31,7 @@ end;
 /
 CREATE OR REPLACE EDITIONABLE PACKAGE BODY  "PKG_RECEIPT_NOTIFICATION_APP" IS
 
-    --—ˆ‹q–¼‹L˜^
+    --æ¥å®¢åè¨˜éŒ²
     procedure fnc_RecordGuestReciption
     (
         strGuestName in VARCHAR2,
@@ -43,7 +43,7 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY  "PKG_RECEIPT_NOTIFICATION_APP" IS
         strMessage                T_GOOGLE_HOME_NOTIFICATION.T_MESSAGE%TYPE; 
     begin
 
-        --« GoogleHome‚Ìî•ñ‚ðŽæ“¾‚µ‚Ä‚¨‚­ -------------------------------------------------------------------- 
+        --â†“ GoogleHomeã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã -------------------------------------------------------------------- 
         BEGIN 
 
             SELECT 
@@ -61,12 +61,12 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY  "PKG_RECEIPT_NOTIFICATION_APP" IS
             WHEN NO_DATA_FOUND THEN 
                 strGoogleHomeIpAddress := ''; 
         END; 
-        --ª GoogleHome‚Ìî•ñ‚ðŽæ“¾‚µ‚Ä‚¨‚­ -------------------------------------------------------------------- 
+        --â†‘ GoogleHomeã®æƒ…å ±ã‚’å–å¾—ã—ã¦ãŠã -------------------------------------------------------------------- 
 
-        --ƒƒbƒZ[ƒW‚ðì¬
-        strMessage := '‚¨’m‚ç‚¹‚Å‚·B' || strGuestName || '‚³‚Ü‚ª—ˆ‹q‚³‚ê‚Ü‚µ‚½';
+        --ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’ä½œæˆ
+        strMessage := 'ãŠçŸ¥ã‚‰ã›ã§ã™ã€‚' || strGuestName || 'ã•ã¾ãŒåˆ°ç€ã•ã‚Œã¾ã—ãŸ';
 
-        --« GoogleHome’Ê’m—pƒe[ƒuƒ‹‚ÉINSERT -----------------------------------------------------------------
+        --â†“ GoogleHomeé€šçŸ¥ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã«INSERT -----------------------------------------------------------------
         INSERT INTO
             T_GOOGLE_HOME_NOTIFICATION
             (
@@ -80,9 +80,9 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY  "PKG_RECEIPT_NOTIFICATION_APP" IS
                 strGoogleHomeIpAddress,
                 systimestamp at time zone 'Asia/Tokyo'
             );
-        --ª GoogleHome’Ê’m—pƒe[ƒuƒ‹‚ÉINSERT -----------------------------------------------------------------
+        --â†‘ GoogleHomeé€šçŸ¥ç”¨ãƒ†ãƒ¼ãƒ–ãƒ«ã«INSERT -----------------------------------------------------------------
 
-        --« ’Ê’m—š—ð‚ÉINSERT -----------------------------------------------------------------
+        --â†“ é€šçŸ¥å±¥æ­´ã«INSERT -----------------------------------------------------------------
         INSERT INTO
             T_NOTIFICATION_HISTORY
             (
@@ -96,7 +96,7 @@ CREATE OR REPLACE EDITIONABLE PACKAGE BODY  "PKG_RECEIPT_NOTIFICATION_APP" IS
                 strGoogleHomeName,
                 strMessage
             );
-        --ª ’Ê’m—š—ð‚ÉINSERT -----------------------------------------------------------------
+        --â†‘ é€šçŸ¥å±¥æ­´ã«INSERT -----------------------------------------------------------------
 
     end fnc_RecordGuestReciption;
 
