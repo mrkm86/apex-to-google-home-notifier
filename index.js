@@ -18,6 +18,7 @@ async function get_notification() {
 
                 console.log("There is no notifications.");
                 console.log("Application is exit.");
+                isComplete = true;
                 return;
 
             }
