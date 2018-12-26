@@ -2,25 +2,11 @@
 
 let oracle = require("./service/oracle");
 let googlehomenotifier = require("./service/google-home-notifier");
-
 const args = process.argv;
+var isComplete = true;
 
-//Execute [--cron]
-if (args.slice(2).length > 0 && args.slice(2)[0] == '--cron') {
-
-    const cron = require('cron');
-    const shell = require('shelljs');
-
-    var job = new cron.CronJob({
-        cronTime: '*/5 * * * * *', // 'second (optional) | minute | hour | day of month | month | day of week'
-        onTick: function () {
-            shell.exec("node index.js");
-        }
-    });
-
-    job.start();
-}
-else {
+async function get_notification() {
+    
     console.log("Application is running...");
 
     //get notification(s)
@@ -61,10 +47,34 @@ else {
                                 }
                             ).then((response) => {
                                 console.log(`Notification(${strRowId}) is completed.`);
+                                isComplete = true;
                             });
                         });
                 })
             }
         }
     );
+}
+
+//通常
+if (args.slice(2).length == 0) {
+    get_notification();
+}
+//Execute [--cron]
+else if (args.slice(2)[0] == '--cron') {
+    const cron = require('cron');
+    const shell = require('shelljs');
+
+    var job = new cron.CronJob({
+        cronTime: '*/5 * * * * *', // 'second (optional) | minute | hour | day of month | month | day of week'
+        onTick: function () {
+            //Wait until it becomes successful (when Google Home IP is not invalid).
+            if (isComplete) {
+                isComplete = false;
+                get_notification();
+            } 
+        }
+    });
+
+    job.start();
 }
