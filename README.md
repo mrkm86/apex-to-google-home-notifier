@@ -22,4 +22,9 @@ sudo nano /etc/rc.local
 
 add below script
 ex) cd /home/{username}/app/apex-to-google-home-notifier
+
+//when excute single action
+node index.js
+
+//when use cron
 node index.js --cron
